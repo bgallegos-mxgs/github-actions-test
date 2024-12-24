@@ -1,0 +1,36 @@
+name: Build and Test .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+  
+    runs-on: windows-latest  
+
+    steps:
+    # Comprobar el código del repositorio
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Configurar .NET en el entorno
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x # Reemplaza por tu versión de .NET SDK
+
+    # Restaurar las dependencias del proyecto
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Compilar el proyecto
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    # Ejecutar las pruebas
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
