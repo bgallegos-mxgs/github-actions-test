@@ -1,0 +1,33 @@
+name: Build and Test API
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Usa Linux para reducir costos y tiempos.
+
+    steps:
+    # Paso 1: Checkout del código
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Paso 2: Configuración del entorno .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x # Reemplaza con la versión de .NET que estés usando.
+
+    # Paso 3: Restaurar dependencias
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Paso 4: Construir el proyecto
+    - name: Build solution
+
+    # Paso 7: (Opcional) Escaneo estático del código
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
