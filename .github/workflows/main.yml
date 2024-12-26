@@ -27,7 +27,12 @@ jobs:
 
     # Paso 4: Construir el proyecto
     - name: Build solution
+      run: dotnet build
 
-    # Paso 7: (Opcional) Escaneo estático del código
+    # Paso 5: Ejecutar pruebas unitarias
+    - name: Run unit tests
+      run: dotnet test
+
+    # Paso 6: (Opcional) Escaneo estático del código
     - name: Run CodeQL Analysis
       uses: github/codeql-action/analyze@v2
