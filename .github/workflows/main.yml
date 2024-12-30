@@ -29,6 +29,8 @@ jobs:
     - name: Build solution
       run: dotnet build --configuration Release --no-restore
 
-    # Paso 7: (Opcional) Escaneo estático del código
-    - name: Run CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+    # Paso 7: Inicializar CodeQL
+    - name: Set up CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: 'csharp'
