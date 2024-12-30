@@ -31,6 +31,6 @@ jobs:
 
     # Paso 7: Inicializar CodeQL
     - name: Set up CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: 'csharp'
