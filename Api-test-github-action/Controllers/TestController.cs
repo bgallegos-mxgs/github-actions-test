@@ -16,7 +16,7 @@ namespace Api_test_github_action.Controllers
         [HttpGet("get-data")]
         public async Task<IActionResult> GetData()
         {
-            var result = await _apiTestService.GetDataAsync<object>("/posts");
+            var result = await _apiTestService.GetDataAsync<object>("/posts/1");
             return Ok(result);
         }
     }
