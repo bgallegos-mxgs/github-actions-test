@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "development" ]
 
 jobs:
   build-and-test:
@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x # Reemplaza con la versión de .NET que estés usando.
+        dotnet-version: 6.0.x # Reemplaza con la versión de .NET que estés usando.
 
     # Paso 3: Restaurar dependencias
     - name: Restore dependencies
@@ -29,6 +29,8 @@ jobs:
     - name: Build solution
       run: dotnet build --configuration Release --no-restore
 
-    # Paso 7: (Opcional) Escaneo estático del código
-    - name: Run CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+    # Paso 7: Inicializar CodeQL
+    - name: Set up CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: 'csharp'
